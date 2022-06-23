@@ -8,7 +8,7 @@ import sliderImage from "../../images/sliderImage.png";
 
 export const Slider = () => {
   return (
-    <div className={styles.slider}>
+    <section className={styles.slider}>
       <Swiper
         modules={[Pagination]}
         pagination={{ clickable: true }}
@@ -64,6 +64,6 @@ export const Slider = () => {
           </div>
         </SwiperSlide>
       </Swiper>
-    </div>
+    </section>
   );
 };

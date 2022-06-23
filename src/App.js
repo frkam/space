@@ -1,6 +1,7 @@
 import "./styles/base.scss";
 import { Header } from "./widgets/header/header";
 import { Slider } from "./components/slider/slider";
+import { Articles } from "./components/atricles/atricles";
 
 const App = () => {
   return (
@@ -8,6 +9,7 @@ const App = () => {
       <Header />
       <main>
         <Slider />
+        <Articles />
       </main>
     </>
   );

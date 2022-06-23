@@ -1,7 +1,6 @@
 @import "../../styles/variables.scss";
 
 .slider {
-  background: rgb(89, 145, 255);
   background: linear-gradient(
     90deg,
     rgba(89, 145, 255, 1) 0%,
@@ -14,6 +13,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 10000;
     // margin-left: 8rem;
   }
 
