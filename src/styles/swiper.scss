@@ -1,26 +1,6 @@
 @import "./variables.scss";
 
-.swiper-pagination {
-  width: fit-content !important;
-  bottom: 6rem !important;
-}
-
 .swiper {
-  width: 124rem !important;
+  height: 100%;
 }
 
-.swiper-pagination-bullet,
-.swiper-pagination-bullet-active {
-  width: 29px;
-  border-radius: 2px;
-  height: 3px;
-  transition: background-color 0.2s;
-}
-
-.swiper-pagination-bullet {
-  background: rgba(255, 255, 255, 0.3);
-}
-
-.swiper-pagination-bullet-active {
-  background: $color-white;
-}

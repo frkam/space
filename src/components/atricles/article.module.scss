@@ -1,6 +1,9 @@
 @import "../../styles/variables.scss";
 
 .articles {
+  max-width: 116.4rem;
+  margin: 0 auto;
+
   &__container {
     display: grid;
     grid-template-columns: repeat(2, min-content);
@@ -17,6 +20,78 @@
     border-radius: 2rem;
     width: 57.2rem;
     align-items: flex-start;
+  }
+
+  &__filters {
+    display: flex;
+    margin-top: 4rem;
+    margin-bottom: 5.6rem;
+  }
+}
+
+.filters {
+  &__author {
+    display: flex;
+    align-items: center;
+    background-color: $color-white;
+    padding: 1.6rem 4.6rem;
+    border-radius: 1rem;
+    position: relative;
+    width: 33.5rem;
+    justify-content: space-between;
+  }
+}
+
+.author {
+  &__author {
+    display: flex;
+    align-items: center;
+  }
+
+  &__name {
+    color: $color-gray-dark;
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+
+  &__user-image {
+    margin-right: 1rem;
+  }
+
+  &__dropdown {
+    background-color: white;
+
+    border: none;
+    cursor: pointer;
+  }
+
+  &__authors {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    top: 90%;
+    left: 0;
+    background-color: $color-white;
+    width: 33.3rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    gap: 0.5rem;
+    max-height: 17rem;
+    overflow-y: scroll;
+  }
+}
+
+.authors {
+  &__author {
+    background-color: $color-white;
+    border: none;
+    cursor: pointer;
+    color: $color-gray-dark;
+    font-size: 1.6rem;
+
+    &--current {
+      color: $color-blue-sky;
+    }
   }
 }
 

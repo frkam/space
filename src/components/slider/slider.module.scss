@@ -14,7 +14,7 @@
     align-items: center;
     justify-content: center;
     z-index: 10000;
-    // margin-left: 8rem;
+    margin-left: 8rem;
   }
 
   &__swiper {
@@ -63,4 +63,30 @@
     font-family: $font-primary;
     cursor: pointer;
   }
+}
+
+.pagination__wrap {
+  display: flex;
+  margin: 15px 0px 0px 5px;
+  gap: 5px;
+}
+
+.swiper-pagination-bullet,
+.swiper-pagination-bullet-active {
+  width: 29px !important;
+  border-radius: 2px;
+  height: 3px;
+  transition: background-color 0.2s;
+  display: block !important;
+  cursor: pointer;
+}
+
+.swiper-pagination-bullet {
+  display: block !important;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.swiper-pagination-bullet-active {
+  display: block !important;
+  background: $color-white;
 }
