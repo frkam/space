@@ -12,20 +12,11 @@
     width: min-content;
   }
 
-  &__article {
-    display: flex;
-    flex-direction: column;
-    padding: 2.4rem;
-    background-color: $color-white;
-    border-radius: 2rem;
-    width: 57.2rem;
-    align-items: flex-start;
-  }
-
   &__filters {
     display: flex;
     margin-top: 4rem;
     margin-bottom: 5.6rem;
+    gap: 2rem;
   }
 }
 
@@ -40,12 +31,51 @@
     width: 33.5rem;
     justify-content: space-between;
   }
+
+  &__date {
+    color: $color-gray-dark;
+    background-color: $color-white;
+    font-size: 1.6rem;
+    font-weight: 600;
+    padding: 1.6rem;
+    width: 34rem;
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+.date {
+  &__label {
+    display: flex;
+  }
 }
 
 .author {
   &__author {
     display: flex;
     align-items: center;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 1rem;
+  }
+
+  &__clear,
+  &__dropdown {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  &__clear {
+    font-size: 1.6rem;
+    position: absolute;
+    right: 2rem;
+    bottom: 2.8rem;
+    color: $color-blue-dark;
+    height: 1rem;
+    width: 1rem;
   }
 
   &__name {
@@ -56,13 +86,6 @@
 
   &__user-image {
     margin-right: 1rem;
-  }
-
-  &__dropdown {
-    background-color: white;
-
-    border: none;
-    cursor: pointer;
   }
 
   &__authors {
@@ -92,44 +115,5 @@
     &--current {
       color: $color-blue-sky;
     }
-  }
-}
-
-.article {
-  &__date {
-    color: $color-blue-sky;
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-
-  &__title {
-    font-size: 2rem;
-    font-weight: 600;
-    line-height: 160%;
-    color: rgba(0, 0, 0, 0.65);
-    margin-bottom: 1.6rem;
-    height: 5.5rem;
-  }
-
-  &__paragraph {
-    color: $color-gray-dark;
-    font-weight: 400;
-    font-size: 1.6rem;
-    line-height: 150%;
-    text-overflow: ellipsis;
-    height: 7.2rem;
-    overflow: hidden;
-    margin-bottom: 2.4rem;
-  }
-
-  &__author {
-    border-radius: 1rem;
-    color: $color-blue-dark;
-    background-color: $color-blue-light;
-    padding: 0.8rem 2.4rem;
-    font-size: 1.2rem;
-    line-height: 1.8rem;
-    font-weight: 600;
   }
 }

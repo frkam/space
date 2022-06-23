@@ -1,30 +1,76 @@
-import { useEffect, useState } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import { ARTICLES_API } from "../../constants/api";
 import styles from "./article.module.scss";
 import user from "../../images/user.svg";
 import dropdown from "../../images/dropdown.svg";
+import clear from "../../images/clear.svg";
+import { ArticleCard } from "./articleCard";
+import DatePicker from "react-datepicker";
+import { registerLocale } from "react-datepicker";
+import Input from "../UI/datepickerInput";
+import "react-datepicker/dist/react-datepicker.css";
+import "../../styles/datepicker.scss";
+import ru from "date-fns/locale/ru";
+registerLocale("ru", ru);
+
+const CustomInput = forwardRef((props, ref) => {
+  return <Input {...props} ref={ref} />;
+});
 
 export const Articles = () => {
-  const [data, setData] = useState(null);
+  const [articleData, setArticleData] = useState(null);
   const [isAuthorFilterOpened, setIsAuthorFilterOpened] = useState(false);
   const [authorFilter, setAuthorFilter] = useState(null);
+  const [dateFilterFrom, setDateFilterFrom] = useState(null);
+  const [dateFilterTo, setDateFilterTo] = useState(null);
+  const inputRef = useRef(null);
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const getArticlesData = async () => {
       const resp = await fetch(ARTICLES_API);
       const data = await resp.json();
-      setData(data);
+      setArticleData(data);
     };
     getArticlesData();
   }, []);
 
-  const articlesData = data?.articles?.filter(
-    (article) => article.author === authorFilter
-  );
+  useEffect(() => {
+    const closeDropdownOnClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsAuthorFilterOpened(false);
+      }
+    };
+    document.addEventListener("click", closeDropdownOnClickOutside);
+    return () => {
+      document.removeEventListener("click", closeDropdownOnClickOutside);
+    };
+  }, [dropdownRef]);
+
+  const articlesData = articleData?.articles
+    ?.filter((article) => {
+      if (article.author && authorFilter) {
+        return article.author === authorFilter;
+      } else if (!article.author && authorFilter) {
+        return false;
+      }
+      return true;
+    })
+    .filter((article) => {
+      const publishedAt = Number(new Date(article.publishedAt));
+      if (dateFilterFrom && dateFilterTo) {
+        return dateFilterFrom < publishedAt && publishedAt < dateFilterTo;
+      } else if (dateFilterFrom) {
+        return dateFilterFrom < publishedAt;
+      } else if (dateFilterTo) {
+        return publishedAt < dateFilterTo;
+      }
+      return true;
+    });
 
   const authorsData = Array.from(
     new Set(
-      data?.articles
+      articleData?.articles
         ?.filter((article) => article.author)
         .map((article) => article.author)
     )
@@ -33,7 +79,7 @@ export const Articles = () => {
   return (
     <section className={styles.articles}>
       <div className={styles.articles__filters}>
-        <div className={styles.filters__author}>
+        <div className={styles.filters__author} ref={dropdownRef}>
           <div className={styles.author__author}>
             <img
               src={user}
@@ -44,90 +90,68 @@ export const Articles = () => {
               {authorFilter ? authorFilter : "Выбор автора"}
             </span>
           </div>
-          <button
-            className={styles.author__dropdown}
-            onClick={() => setIsAuthorFilterOpened((prev) => !prev)}
-          >
-            <img src={dropdown} alt="dropdown" />
-          </button>
-          <div className={styles.author__authors}>
-            {isAuthorFilterOpened &&
-              authorsData.map((author) => {
-                return (
-                  <button
-                    key={author}
-                    className={`${styles.authors__author} ${
-                      author === authorFilter
-                        ? styles["authors__author--current"]
-                        : ""
-                    }`}
-                    onClick={() => setAuthorFilter(author)}
-                  >
-                    {author}
-                  </button>
-                );
-              })}
+          <div className={styles.author__buttons}>
+            <button
+              className={styles.author__dropdown}
+              onClick={() => setIsAuthorFilterOpened((prev) => !prev)}
+            >
+              <img src={dropdown} alt="dropdown" />
+            </button>
+            {authorFilter && (
+              <button
+                onClick={() => setAuthorFilter(null)}
+                className={styles.author__clear}
+              >
+                <img src={clear} alt="X" />
+              </button>
+            )}
+            <div className={styles.author__authors}>
+              {isAuthorFilterOpened &&
+                authorsData.map((author) => {
+                  return (
+                    <button
+                      key={author}
+                      className={`${styles.authors__author} ${
+                        author === authorFilter
+                          ? styles["authors__author--current"]
+                          : ""
+                      }`}
+                      onClick={() => setAuthorFilter(author)}
+                    >
+                      {author}
+                    </button>
+                  );
+                })}
+            </div>
           </div>
         </div>
-        <div>От и до</div>
+        <div className={styles.filters__date}>
+          <label htmlFor="from" className={styles.date__label}>
+            От
+            <DatePicker
+              selected={dateFilterFrom}
+              onChange={(date) => setDateFilterFrom(Number(date))}
+              locale="ru"
+              customInput={<CustomInput inputRef={inputRef} />}
+            />
+          </label>
+          <span>—</span>
+          <label htmlFor="to" className={styles.date__label}>
+            До
+            <DatePicker
+              selected={dateFilterTo}
+              onChange={(date) => setDateFilterTo(Number(date))}
+              locale="ru"
+              customInput={<CustomInput inputRef={inputRef} />}
+              className="datepicker"
+            />
+          </label>
+        </div>
       </div>
       <div className={styles.articles__container}>
-        {authorFilter &&
-          articlesData?.map((article) => {
-            const date = new Date(Date.parse(article?.publishedAt))
-              .toLocaleDateString("ru-RU", {
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-              })
-              .replace(".", "")
-              .replace(" г", "");
-
-            const title = article?.title.replace(/\uFFFD/g, "");
-
-            const paragraph = article?.description.replace(/\uFFFD/g, "");
-
-            return (
-              <div key={article.content} className={styles.articles__article}>
-                <span className={styles.article__date}>{date}</span>
-                <h1 className={styles.article__title}>{title}</h1>
-                <p className={styles.article__paragraph}>{paragraph}</p>
-                {article.author && (
-                  <div className={styles.article__author}>
-                    {article?.author}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        {!authorFilter &&
-          data?.articles?.map((article) => {
-            const date = new Date(Date.parse(article?.publishedAt))
-              .toLocaleDateString("ru-RU", {
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-              })
-              .replace(".", "")
-              .replace(" г", "");
-
-            const title = article?.title.replace(/\uFFFD/g, "");
-
-            const paragraph = article?.description.replace(/\uFFFD/g, "");
-
-            return (
-              <div key={article.content} className={styles.articles__article}>
-                <span className={styles.article__date}>{date}</span>
-                <h1 className={styles.article__title}>{title}</h1>
-                <p className={styles.article__paragraph}>{paragraph}</p>
-                {article.author && (
-                  <div className={styles.article__author}>
-                    {article?.author}
-                  </div>
-                )}
-              </div>
-            );
-          })}
+        {articlesData?.map((article) => {
+          return <ArticleCard article={article} key={article.title} />;
+        })}
       </div>
     </section>
   );
