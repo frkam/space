@@ -1,0 +1,66 @@
+@import "../../styles/variables.scss";
+
+.header {
+  height: 8.8rem;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background-color: $color-white;
+  z-index: 100;
+
+  &__contacts {
+    font-size: 1.6rem;
+  }
+}
+
+.header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 116.4rem;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.contacts {
+  &__tel,
+  &__mail {
+    text-decoration: none;
+    color: $color-gray;
+    margin-top: 5px;
+  }
+
+  &__mail {
+    margin-left: 4rem;
+  }
+}
+
+@media only screen and (max-width: $breakpoint-lg) {
+  .header {
+    &__container {
+      margin: 0 1.6rem;
+    }
+  }
+}
+
+@media only screen and (max-width: $breakpoint-md) {
+  .contacts {
+    &__mail {
+      margin-left: 2rem;
+    }
+  }
+
+  .header {
+    height: 5.6rem;
+
+    &__contacts {
+      display: flex;
+      align-items: center;
+    }
+
+    &__logo {
+      width: 9.6rem;
+      height: 2.4rem;
+    }
+  }
+}
