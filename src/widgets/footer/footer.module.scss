@@ -4,9 +4,34 @@
   height: 22.8rem;
   background-color: $color-blue-dark2;
 
+  @media only screen and (max-width: $breakpoint-mdsm) {
+    height: 100%;
+  }
+
+  &__logo {
+    @media only screen and (max-width: $breakpoint-mdsm) {
+      max-width: 13rem;
+      height: 3.2rem;
+      margin-bottom: 3.2rem;
+    }
+  }
+
   &__container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+
+    @media only screen and (max-width: $breakpoint-mdsm) {
+      flex-direction: column;
+      justify-content: start;
+      align-items: flex-start;
+    }
+
+    &--social {
+      @media only screen and (max-width: $breakpoint-mdsm) {
+        flex-direction: column-reverse;
+      }
+    }
   }
 
   &__main-container {
@@ -14,19 +39,55 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    @media only screen and (max-width: $breakpoint-mdsm) {
+      padding: 2.4rem 0;
+    }
   }
 
   &__pages {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, max-content);
     gap: 4.8rem;
     font-size: 1.6rem;
     font-weight: 500;
+
+    @media only screen and (max-width: $breakpoint-mdsm) {
+      margin-bottom: 3.7rem;
+      grid-template-columns: repeat(2, max-content);
+      row-gap: 1.6rem;
+      column-gap: 4rem;
+
+      grid-template-areas:
+        "solutions blog"
+        "about-us contacts";
+
+      & > .footer__solutions {
+        grid-area: solutions;
+      }
+
+      & > .footer__about-us {
+        grid-area: about-us;
+      }
+
+      & > .footer__blog {
+        grid-area: blog;
+      }
+
+      & > .footer__contacts {
+        grid-area: contacts;
+      }
+    }
   }
 
   &__copyright {
     font-weight: 400;
     font-size: 1.4rem;
     color: rgba(255, 255, 255, 0.8);
+
+    @media only screen and (max-width: $breakpoint-mdsm) {
+      margin-top: 2.4rem;
+    }
   }
 
   &__social {

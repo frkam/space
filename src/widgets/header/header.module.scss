@@ -11,13 +11,13 @@
   &__contacts {
     font-size: 1.6rem;
   }
-}
 
-.header__container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
 }
 
 .contacts {
@@ -30,14 +30,6 @@
 
   &__mail {
     margin-left: 4rem;
-  }
-}
-
-@media only screen and (max-width: $breakpoint-lg) {
-  .header {
-    &__container {
-      margin: 0 1.6rem;
-    }
   }
 }
 

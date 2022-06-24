@@ -14,21 +14,35 @@ export const Footer = () => {
             <img src={logo} alt="logo" className={styles.footer__logo} />
           </a>
           <div className={styles.footer__pages}>
-            <a href="#" className={styles.footer__link}>
+            <a
+              href="#"
+              className={`${styles.footer__link} ${styles.footer__solutions}`}
+            >
               Готовые решения
             </a>
-            <a href="#" className={styles.footer__link}>
+            <a
+              href="#"
+              className={`${styles.footer__link} ${styles["about-us"]}`}
+            >
               О нас
             </a>
-            <a href="#" className={styles.footer__link}>
+            <a
+              href="#"
+              className={`${styles.footer__link} ${styles.footer__blog}`}
+            >
               Блог
             </a>
-            <a href="#" className={styles.footer__link}>
+            <a
+              href="#"
+              className={`${styles.footer__link} ${styles.footer__contacts}`}
+            >
               Контакты
             </a>
           </div>
         </div>
-        <div className={styles.footer__container}>
+        <div
+          className={`${styles.footer__container} ${styles["footer__container--social"]}`}
+        >
           <p className={styles.footer__copyright}>© ООО «Лого», 2008—2022</p>
           <div className={styles.footer__social}>
             <a

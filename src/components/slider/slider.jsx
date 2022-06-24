@@ -57,20 +57,28 @@ export const Slider = () => {
         >
           {slides.map((slide) => (
             <SwiperSlide key={slide.id}>
-              <div className={styles.slider__slide}>
-                <div className={styles.slide__text}>
-                  <h1 className={styles.text__header}>{slide.header}</h1>
-                  <p className={styles.text__paragraph}>{slide.paragraph}</p>
-                  <button className={styles.text__button}>
-                    {slide.button}
-                  </button>
-                  <div className={styles.pagination__wrap}>
-                    {slides.map((_, i) => (
-                      <div
-                        onClick={() => swiperRef.current.slideTo(i++)}
-                        className={isActive(i++, active)}
-                      ></div>
-                    ))}
+              <div className="container">
+                <div className={`${styles.slider__slide} `}>
+                  <div className={styles.slide__text}>
+                    <h1 className={styles.text__header}>
+                      Как бизнесу сохранять <br />
+                      IT-кадры на фоне кризиса
+                    </h1>
+                    <p className={styles.text__paragraph}>
+                      Инструменты, которые могут использовать <br />
+                      компании для удержания сотрудников
+                    </p>
+                    <button className={styles.text__button}>
+                      {slide.button}
+                    </button>
+                    <div className={styles.pagination__wrap}>
+                      {slides.map((_, i) => (
+                        <div
+                          onClick={() => swiperRef.current.slideTo(i++)}
+                          className={isActive(i++, active)}
+                        ></div>
+                      ))}
+                    </div>
                   </div>
                 </div>
                 <img
