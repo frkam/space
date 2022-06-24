@@ -1,6 +1,6 @@
 import { forwardRef, useEffect, useRef, useState } from "react";
 import { ARTICLES_API } from "../../constants/api";
-import styles from "./article.module.scss";
+import styles from "./articles.module.scss";
 import user from "../../images/user.svg";
 import dropdown from "../../images/dropdown.svg";
 import clear from "../../images/clear.svg";
