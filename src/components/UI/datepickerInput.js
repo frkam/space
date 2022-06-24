@@ -12,4 +12,4 @@ const Input = ({ onChange, placeholder, value, id, onClick }, ref) => (
   />
 );
 
-export default forwardRef(Input)
+export default forwardRef(Input);

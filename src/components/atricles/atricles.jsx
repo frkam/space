@@ -134,6 +134,7 @@ export const Articles = () => {
                 onChange={(date) => setDateFilterFrom(Number(date))}
                 locale="ru"
                 customInput={<CustomInput inputRef={inputRef} />}
+                className="datepicker"
               />
             </label>
             <span>—</span>
