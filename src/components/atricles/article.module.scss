@@ -1,8 +1,7 @@
 @import "../../styles/variables.scss";
 
 .articles {
-  max-width: 116.4rem;
-  margin: 0 auto;
+  margin-bottom: 8rem;
 
   &__container {
     display: grid;
@@ -17,6 +16,8 @@
     margin-top: 4rem;
     margin-bottom: 5.6rem;
     gap: 2rem;
+    position: sticky;
+    top: 8.8rem;
   }
 }
 
@@ -41,6 +42,7 @@
     width: 34rem;
     display: flex;
     gap: 1rem;
+    border-radius: 1rem;
   }
 }
 

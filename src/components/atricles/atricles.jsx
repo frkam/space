@@ -78,80 +78,82 @@ export const Articles = () => {
 
   return (
     <section className={styles.articles}>
-      <div className={styles.articles__filters}>
-        <div className={styles.filters__author} ref={dropdownRef}>
-          <div className={styles.author__author}>
-            <img
-              src={user}
-              alt="User"
-              className={styles["author__user-image"]}
-            />
-            <span className={styles.author__name}>
-              {authorFilter ? authorFilter : "Выбор автора"}
-            </span>
-          </div>
-          <div className={styles.author__buttons}>
-            <button
-              className={styles.author__dropdown}
-              onClick={() => setIsAuthorFilterOpened((prev) => !prev)}
-            >
-              <img src={dropdown} alt="dropdown" />
-            </button>
-            {authorFilter && (
+      <div className="container">
+        <div className={styles.articles__filters}>
+          <div className={styles.filters__author} ref={dropdownRef}>
+            <div className={styles.author__author}>
+              <img
+                src={user}
+                alt="User"
+                className={styles["author__user-image"]}
+              />
+              <span className={styles.author__name}>
+                {authorFilter ? authorFilter : "Выбор автора"}
+              </span>
+            </div>
+            <div className={styles.author__buttons}>
               <button
-                onClick={() => setAuthorFilter(null)}
-                className={styles.author__clear}
+                className={styles.author__dropdown}
+                onClick={() => setIsAuthorFilterOpened((prev) => !prev)}
               >
-                <img src={clear} alt="X" />
+                <img src={dropdown} alt="dropdown" />
               </button>
-            )}
-            <div className={styles.author__authors}>
-              {isAuthorFilterOpened &&
-                authorsData.map((author) => {
-                  return (
-                    <button
-                      key={author}
-                      className={`${styles.authors__author} ${
-                        author === authorFilter
-                          ? styles["authors__author--current"]
-                          : ""
-                      }`}
-                      onClick={() => setAuthorFilter(author)}
-                    >
-                      {author}
-                    </button>
-                  );
-                })}
+              {authorFilter && (
+                <button
+                  onClick={() => setAuthorFilter(null)}
+                  className={styles.author__clear}
+                >
+                  <img src={clear} alt="X" />
+                </button>
+              )}
+              <div className={styles.author__authors}>
+                {isAuthorFilterOpened &&
+                  authorsData.map((author) => {
+                    return (
+                      <button
+                        key={author}
+                        className={`${styles.authors__author} ${
+                          author === authorFilter
+                            ? styles["authors__author--current"]
+                            : ""
+                        }`}
+                        onClick={() => setAuthorFilter(author)}
+                      >
+                        {author}
+                      </button>
+                    );
+                  })}
+              </div>
             </div>
           </div>
+          <div className={styles.filters__date}>
+            <label htmlFor="from" className={styles.date__label}>
+              От
+              <DatePicker
+                selected={dateFilterFrom}
+                onChange={(date) => setDateFilterFrom(Number(date))}
+                locale="ru"
+                customInput={<CustomInput inputRef={inputRef} />}
+              />
+            </label>
+            <span>—</span>
+            <label htmlFor="to" className={styles.date__label}>
+              До
+              <DatePicker
+                selected={dateFilterTo}
+                onChange={(date) => setDateFilterTo(Number(date))}
+                locale="ru"
+                customInput={<CustomInput inputRef={inputRef} />}
+                className="datepicker"
+              />
+            </label>
+          </div>
         </div>
-        <div className={styles.filters__date}>
-          <label htmlFor="from" className={styles.date__label}>
-            От
-            <DatePicker
-              selected={dateFilterFrom}
-              onChange={(date) => setDateFilterFrom(Number(date))}
-              locale="ru"
-              customInput={<CustomInput inputRef={inputRef} />}
-            />
-          </label>
-          <span>—</span>
-          <label htmlFor="to" className={styles.date__label}>
-            До
-            <DatePicker
-              selected={dateFilterTo}
-              onChange={(date) => setDateFilterTo(Number(date))}
-              locale="ru"
-              customInput={<CustomInput inputRef={inputRef} />}
-              className="datepicker"
-            />
-          </label>
+        <div className={styles.articles__container}>
+          {articlesData?.map((article) => {
+            return <ArticleCard article={article} key={article.title} />;
+          })}
         </div>
-      </div>
-      <div className={styles.articles__container}>
-        {articlesData?.map((article) => {
-          return <ArticleCard article={article} key={article.title} />;
-        })}
       </div>
     </section>
   );

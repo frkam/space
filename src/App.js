@@ -2,6 +2,7 @@ import "./styles/base.scss";
 import { Header } from "./widgets/header/header";
 import { Slider } from "./components/slider/slider";
 import { Articles } from "./components/atricles/atricles";
+import { Footer } from "./widgets/footer/footer";
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
         <Slider />
         <Articles />
       </main>
+      <Footer />
     </>
   );
 };
