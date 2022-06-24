@@ -14,10 +14,9 @@
     line-height: 160%;
     color: rgba(0, 0, 0, 0.65);
     margin-bottom: 1.6rem;
-    height: 5.5rem;
+    height: 6.5rem;
 
     @media only screen and (max-width: $breakpoint-xl) {
-      height: 10rem;
       margin-bottom: 0;
     }
   }
@@ -28,13 +27,11 @@
     font-size: 1.6rem;
     line-height: 150%;
     text-overflow: ellipsis;
-    height: 7.2rem;
     overflow: hidden;
     margin-bottom: 2.4rem;
-
-    @media only screen and (max-width: $breakpoint-md) {
-      height: 10rem;
-    }
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
   }
 
   &__author {
@@ -45,6 +42,7 @@
     font-size: 1.2rem;
     line-height: 1.8rem;
     font-weight: 600;
+    margin-top: auto;
   }
 }
 
