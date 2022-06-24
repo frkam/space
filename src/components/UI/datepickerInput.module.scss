@@ -8,6 +8,7 @@
   color: $color-gray-dark;
   width: 10.5rem;
   padding: 5px;
+  z-index: 100000000;
 
   @media only screen and (max-width: $breakpoint-mdsm) {
     width: 100%;
