@@ -18,6 +18,11 @@
     gap: 2rem;
     position: sticky;
     top: 8.8rem;
+
+    @media only screen and (max-width: $breakpoint-mdsm) {
+      flex-direction: column;
+      width: 100%;
+    }
   }
 }
 
@@ -31,6 +36,10 @@
     position: relative;
     width: 33.5rem;
     justify-content: space-between;
+
+    @media only screen and (max-width: $breakpoint-mdsm) {
+      width: 100%;
+    }
   }
 
   &__date {
@@ -43,6 +52,11 @@
     display: flex;
     gap: 1rem;
     border-radius: 1rem;
+
+    @media only screen and (max-width: $breakpoint-mdsm) {
+      width: 100%;
+      justify-content: space-between;
+    }
   }
 }
 
@@ -103,6 +117,10 @@
     gap: 0.5rem;
     max-height: 17rem;
     overflow-y: scroll;
+
+    @media only screen and (max-width: $breakpoint-mdsm) {
+      width: 100%;
+    }
   }
 }
 

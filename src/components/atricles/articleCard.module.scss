@@ -15,6 +15,11 @@
     color: rgba(0, 0, 0, 0.65);
     margin-bottom: 1.6rem;
     height: 5.5rem;
+
+    @media only screen and (max-width: $breakpoint-xl) {
+      height: 10rem;
+      margin-bottom: 0;
+    }
   }
 
   &__paragraph {
@@ -26,6 +31,10 @@
     height: 7.2rem;
     overflow: hidden;
     margin-bottom: 2.4rem;
+
+    @media only screen and (max-width: $breakpoint-md) {
+      height: 10rem;
+    }
   }
 
   &__author {

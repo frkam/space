@@ -65,8 +65,8 @@ export const Slider = () => {
                       IT-кадры на фоне кризиса
                     </h1>
                     <p className={styles.text__paragraph}>
-                      Инструменты, которые могут использовать <br />
-                      компании для удержания сотрудников
+                      Инструменты, которые могут использовать компании для
+                      удержания сотрудников
                     </p>
                     <button className={styles.text__button}>
                       {slide.button}

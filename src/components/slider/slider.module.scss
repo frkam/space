@@ -8,12 +8,29 @@
   );
   height: 54.6rem;
 
+  @media only screen and (max-width: $breakpoint-md) {
+    margin-top: 1.6rem;
+  }
+
+  @media only screen and (max-width: $breakpoint-mdsm) {
+    height: 41rem;
+  }
+
   &__slide {
     height: 100%;
     display: flex;
     align-items: center;
     z-index: 100000;
     position: relative;
+
+    @media only screen and (max-width: $breakpoint-md) {
+      align-items: flex-start;
+      padding-top: 1.6rem;
+    }
+
+    @media only screen and (max-width: $breakpoint-mdsm) {
+      flex-direction: column;
+    }
   }
 
   &__swiper {
@@ -48,6 +65,10 @@
     line-height: 140%;
     margin-bottom: 2.4rem;
     max-width: 57.4rem;
+
+    @media only screen and (max-width: $breakpoint-md) {
+      font-size: 2.2rem;
+    }
   }
 
   &__paragraph {
@@ -56,6 +77,10 @@
     line-height: 150%;
     margin-bottom: 3.2rem;
     max-width: 51.3rem;
+
+    @media only screen and (max-width: $breakpoint-md) {
+      font-size: 1.8rem;
+    }
   }
 
   &__header,
@@ -82,11 +107,15 @@
   gap: 5px;
   position: absolute;
   bottom: 6.4rem;
+
+  @media only screen and (max-width: $breakpoint-md) {
+    bottom: 5rem;
+  }
 }
 
 .swiper-pagination-bullet,
 .swiper-pagination-bullet-active {
-  width: 29px !important;
+  width: 2.9rem !important;
   border-radius: 2px;
   height: 3px;
   transition: background-color 0.2s;
