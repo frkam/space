@@ -149,11 +149,18 @@ export const Articles = () => {
             </label>
           </div>
         </div>
-        <div className={styles.articles__container}>
-          {articlesData?.map((article) => {
-            return <ArticleCard article={article} key={article.title} />;
-          })}
-        </div>
+        {articlesData?.length > 0 && (
+          <div className={styles.articles__container}>
+            {articlesData?.map((article) => {
+              return <ArticleCard article={article} key={article.title} />;
+            })}
+          </div>
+        )}
+        {articlesData?.length === 0 && (
+          <p className={styles["articles__not-found"]}>
+            По вашему запросу ничего не найдено.
+          </p>
+        )}
       </div>
     </section>
   );
